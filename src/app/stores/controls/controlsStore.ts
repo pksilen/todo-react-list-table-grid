@@ -20,7 +20,7 @@ const initialTheme = createTheme({
   }
 });
 
-export type ViewType = 'list' | 'table';
+export type ViewType = 'list' | 'table' | 'grid';
 export type ViewMode = PaletteMode;
 
 interface State {
@@ -31,8 +31,7 @@ interface State {
 interface Actions {
   activateDarkMode: () => void;
   activateLightMode: () => void;
-  showTodosList: () => void;
-  showTodosTable: () => void;
+  changeTodosView: (viewType: ViewType) => void;
 }
 
 type ControlsStore = State & { actions: Actions };
@@ -58,7 +57,6 @@ export const useControlsStore = create<ControlsStore>()((setState) => ({
         })
       })),
 
-    showTodosList: () => setState((store) => ({ viewType: 'list' })),
-    showTodosTable: () => setState((store) => ({ viewType: 'table' }))
+    changeTodosView: (viewType: ViewType) => setState((store) => ({ viewType }))
   }
 }));

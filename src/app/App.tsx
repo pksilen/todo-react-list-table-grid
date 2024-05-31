@@ -5,8 +5,7 @@ import { ErrorBoundary } from 'app/components/errorboundary/ErrorBoundary';
 import { Header } from 'app/components/header/Header';
 import { useControlsStore } from 'app/stores/controls/controlsStore';
 import classes from './App.module.scss';
-import { TodosList } from './components/todos/TodosList';
-import { TodosTable } from './components/todos/TodosTable';
+import {createTodosView} from "./components/todos/createTodosView";
 
 export default function App() {
   const theme = useControlsStore((store) => store.theme);
@@ -19,7 +18,7 @@ export default function App() {
         <Header />
         <Controls />
         <ErrorBoundary>
-          {viewType === 'list' ? <TodosList /> : <TodosTable />}
+          {createTodosView(viewType)}
           <AddTodo />
         </ErrorBoundary>
       </ThemeProvider>

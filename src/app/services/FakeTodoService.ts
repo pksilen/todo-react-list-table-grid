@@ -1,6 +1,7 @@
 import { Todo } from 'app/stores/todos/Todo';
 import { TodoService } from './TodoService';
 
+
 const isTest = window.location.href.includes('test');
 
 // Promises returned from below method never reject, but
@@ -19,7 +20,7 @@ class FakeTodoService implements TodoService {
       setTimeout(() => {
         const randomValue = Math.random();
 
-        if (isTest || randomValue < 0.7) {
+        if (isTest || randomValue < 0.95) {
           resolve([[{ id: '1', title: 'Dummy todo', isDone: false }], null]);
         } else {
           resolve([[], new Error()]);

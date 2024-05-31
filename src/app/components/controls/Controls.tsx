@@ -4,6 +4,7 @@ import {
 } from 'app/common/components/buttons/IconRadioButtonGroup';
 import {
   DarkModeIcon,
+  GridIcon,
   LightModeIcon,
   ListIcon,
   TableIcon
@@ -13,18 +14,20 @@ import { ViewType, useControlsStore } from 'app/stores/controls/controlsStore';
 import { useTodosStore } from 'app/stores/todos/todosStore';
 import classes from './Controls.module.scss';
 
+
 type ViewMode = 'dark' | 'light';
 
 export const Controls = () => {
   const { toggleShouldShowUndoneTodosOnly } = useTodosStore((store) => store.actions);
 
-  const { activateDarkMode, activateLightMode, showTodosList, showTodosTable } = useControlsStore(
+  const { changeTodosView, activateDarkMode, activateLightMode } = useControlsStore(
     (store) => store.actions
   );
 
   const viewTypeButtons: IconRadioButtonProps<ViewType>[] = [
-    { icon: <ListIcon />, onClick: showTodosList, value: 'list' },
-    { icon: <TableIcon />, onClick: showTodosTable, value: 'table' }
+    { icon: <ListIcon />, onClick: () => changeTodosView('list'), value: 'list' },
+    { icon: <TableIcon />, onClick: () => changeTodosView('table'), value: 'table' },
+    { icon: <GridIcon />, onClick: () => changeTodosView('grid'), value: 'grid' }
   ];
 
   const viewModeButtons: IconRadioButtonProps<ViewMode>[] = [
