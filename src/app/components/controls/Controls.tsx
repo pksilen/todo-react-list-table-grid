@@ -19,20 +19,17 @@ type ViewMode = 'dark' | 'light';
 
 export const Controls = () => {
   const { toggleShouldShowUndoneTodosOnly } = useTodosStore((store) => store.actions);
-
-  const { changeTodosView, activateDarkMode, activateLightMode } = useControlsStore(
-    (store) => store.actions
-  );
+  const { setViewMode, setViewType } = useControlsStore((store) => store.actions);
 
   const viewTypeButtons: IconRadioButtonProps<ViewType>[] = [
-    { icon: <ListIcon />, onClick: () => changeTodosView('list'), value: 'list' },
-    { icon: <TableIcon />, onClick: () => changeTodosView('table'), value: 'table' },
-    { icon: <GridIcon />, onClick: () => changeTodosView('grid'), value: 'grid' }
+    { icon: <ListIcon />, onClick: () => setViewType('list'), value: 'list' },
+    { icon: <TableIcon />, onClick: () => setViewType('table'), value: 'table' },
+    { icon: <GridIcon />, onClick: () => setViewType('grid'), value: 'grid' }
   ];
 
   const viewModeButtons: IconRadioButtonProps<ViewMode>[] = [
-    { icon: <LightModeIcon />, onClick: activateLightMode, value: 'light' },
-    { icon: <DarkModeIcon />, onClick: activateDarkMode, value: 'dark' }
+    { icon: <LightModeIcon />, onClick: () => setViewMode('light'), value: 'light' },
+    { icon: <DarkModeIcon />, onClick: () => setViewMode('dark'), value: 'dark' }
   ];
 
   return (

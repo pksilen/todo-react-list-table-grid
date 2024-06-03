@@ -10,15 +10,15 @@ type Props = {
 };
 
 export const TodoGridItem = ({ todo: { id, title, isDone } }: Props) => {
-  const { removeTodo, setEditableTodo } = useTodo(id);
+  const { remove, setAsEditable } = useTodo(id);
 
   return (
     <div className={classes.todo}>
       <TodoIcon color={isDone ? 'success' : 'error'} />
       <div>{title}</div>
       <div className={classes.buttons}>
-        <IconButton icon={<EditIcon />} onClick={setEditableTodo} />
-        <IconButton icon={<RemoveIcon />} onClick={removeTodo} />
+        <IconButton icon={<EditIcon />} onClick={setAsEditable} />
+        <IconButton icon={<RemoveIcon />} onClick={remove} />
       </div>
     </div>
   );
